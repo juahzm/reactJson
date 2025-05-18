@@ -10,7 +10,10 @@ const About = ({ setshowaddPackage }) => {
             <h4 className="font-bold text-blue-400 text-center">About this Application</h4>
             <p>Version: 1.1.1</p>
             <p><strong>Web Developper: </strong>Juan Hernandez</p>
-            <Link className="font-bold text-gray-400" to="/"> Back</Link>
+
+            <div className='mt-7 p-1 border inline-flex rounded text-center'>
+                <Link className="font-bold inline-flex text-gray-400" to="/packages"> Back</Link>
+            </div>
         </div>
     )
 

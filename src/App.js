@@ -8,7 +8,8 @@ import EditPackage from './components/EditPackage';
 import Footer from './components/Footer';
 import About from './components/About';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
+import Nav from './components/Nav';
+import Home from './components/Home';
 
 function App() {
 
@@ -75,14 +76,16 @@ function App() {
       <div className="min-h-screen">
         <div className="container mx-auto p-8 border-2 rounded mt-20 mb-20 rounded-lg max-w-scren-md">
 
+          <Nav />
           <Header toogleForm={() => setshowaddPackage(!showaddPackage)} showAdd={showaddPackage} />
           {showaddPackage && < AddPackage onAdd={addPackage} />}
 
           <Routes>
 
-            <Route path='/' element={<Packages destinations={destinations} onDelete={deletePackage} onUpdate={updatePackage} />} />
+            <Route path='/packages' element={<Packages destinations={destinations} onDelete={deletePackage} onUpdate={updatePackage} />} />
             <Route path='/edit' element={<EditPackage onEdit={updatePackage} />} />
             <Route path='/about' element={<About setshowaddPackage={setshowaddPackage} />} />
+            <Route path='/home' element={<Home setshowaddPackage={setshowaddPackage} />} />
 
 
           </Routes>

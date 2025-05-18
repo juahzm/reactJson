@@ -10,7 +10,7 @@ const Header = ({ toogleForm, showAdd }) => {
         <header className="flex justify-between basis-[777px] ">
             <h1 className="text-xl font-bold font-body mt-5 mb-10">Travel Packages</h1>
             <div>
-                {location.pathname === '/' && (<Button title={showAdd ? 'Close' : 'Add'} onClick={toogleForm} />)}
+                {location.pathname === '/packages' && (<Button title={showAdd ? 'Close' : 'Add'} onClick={toogleForm} />)}
 
             </div>
         </header>
