@@ -1,9 +1,7 @@
 
 
-const Button = ({ title }) => {
-    const onClick = () => {
-        console.log('ca marche bio')
-    }
+const Button = ({ title, onClick }) => {
+
     return (
         <button
             type="button"

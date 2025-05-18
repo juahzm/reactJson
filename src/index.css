@@ -7,3 +7,8 @@
 .btn-red {
     @apply bg-red-200 hover:bg-red-500 px-4 rounded
 }
+
+
+.btn-orange {
+    @apply bg-orange-200 hover:bg-orange-500 px-4 rounded
+}

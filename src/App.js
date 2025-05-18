@@ -4,196 +4,44 @@ import Header from './components/Header';
 import { useState, useEffect } from 'react';
 import Packages from './components/Packages';
 import AddPackage from './components/AddPackage';
+import EditPackage from './components/EditPackage';
+import Footer from './components/Footer';
+import About from './components/About';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 
 function App() {
-  const [destinations, setDestinations] = useState([{
-    "id": "1",
-    "packageName": "Paris Getaway",
-    "country": "France",
-    "description": "Explore the romantic city of lights with its iconic Eiffel Tower, art museums, and gourmet cuisine.",
-    "price": 1450,
-    "category": "Culture"
-  },
-  {
-    "id": "2",
-    "packageName": "Safari in the Serengeti",
-    "country": "Tanzania",
-    "description": "Experience wildlife like never before on a guided safari through the vast Serengeti National Park.",
-    "price": 3200,
-    "category": "Aventure"
-  },
-  {
-    "id": "3",
-    "packageName": "Beach Paradise in Bali",
-    "country": "Indonesia",
-    "description": "Relax on stunning white-sand beaches, explore temples, and enjoy vibrant Balinese culture.",
-    "price": 1700,
-    "category": "Plage"
-  },
-  {
-    "id": "4",
-    "packageName": "Tokyo Explorer",
-    "country": "Japan",
-    "description": "Dive into futuristic cities, traditional temples, and world-renowned cuisine in Tokyo.",
-    "price": 2500,
-    "category": "Culture"
-  },
-  {
-    "id": "5",
-    "packageName": "Amazon Rainforest Expedition",
-    "country": "Brazil",
-    "description": "Venture into the Amazon jungle on a guided eco-tour full of exotic flora and fauna.",
-    "price": 2900,
-    "category": "Aventure"
-  },
-  {
-    "id": "6",
-    "packageName": "Ski the Alps",
-    "country": "Switzerland",
-    "description": "Hit the slopes of the Swiss Alps for a luxurious skiing and snowboarding experience.",
-    "price": 3300,
-    "category": "Aventure"
-  },
-  {
-    "id": "7",
-    "packageName": "New York City Escape",
-    "country": "United States",
-    "description": "Enjoy the energy of NYC with Broadway shows, iconic landmarks, and world-class shopping.",
-    "price": 1800,
-    "category": "Culture"
-  },
-  {
-    "id": "8",
-    "packageName": "Greek Islands Cruise",
-    "country": "Greece",
-    "description": "Sail through the Aegean Sea, stopping at Mykonos, Santorini, and other picturesque islands.",
-    "price": 2200,
-    "category": "Plage"
-  },
-  {
-    "id": "9",
-    "packageName": "Northern Lights in Iceland",
-    "country": "Iceland",
-    "description": "Witness the magical aurora borealis, soak in hot springs, and explore volcanic landscapes.",
-    "price": 2600,
-    "category": "Aventure"
-  },
-  {
-    "id": "10",
-    "packageName": "Cape Town Discovery",
-    "country": "South Africa",
-    "description": "Explore Table Mountain, vineyards, and the vibrant cultural scene of Cape Town.",
-    "price": 2400,
-    "category": "Culture"
-  },
-  {
-    "id": "11",
-    "packageName": "Cultural Tour of Rome",
-    "country": "Italy",
-    "description": "Walk through ancient ruins, taste authentic Italian food, and admire Renaissance art.",
-    "price": 1950,
-    "category": "Culture"
-  },
-  {
-    "id": "12",
-    "packageName": "Phuket Beach Resort",
-    "country": "Thailand",
-    "description": "Enjoy sunny days and turquoise waters in Thailand’s premier beach destination.",
-    "price": 1500,
-    "category": "Plage"
-  },
-  {
-    "id": "13",
-    "packageName": "Inca Trail to Machu Picchu",
-    "country": "Peru",
-    "description": "Hike the legendary Inca Trail to the breathtaking Machu Picchu ruins.",
-    "price": 2100,
-    "category": "Aventure"
-  },
-  {
-    "id": "14",
-    "packageName": "Dubai Luxury Escape",
-    "country": "United Arab Emirates",
-    "description": "Experience ultra-modern architecture, luxury shopping, and desert adventures.",
-    "price": 2800,
-    "category": "Culture"
-  },
-  {
-    "id": "15",
-    "packageName": "Maldives Overwater Retreat",
-    "country": "Maldives",
-    "description": "Stay in an overwater bungalow surrounded by clear blue waters and coral reefs.",
-    "price": 3500,
-    "category": "Plage"
-  },
-  {
-    "id": "16",
-    "packageName": "Cuban Rhythms Tour",
-    "country": "Cuba",
-    "description": "Dance through Havana, explore vintage cars, and enjoy Caribbean music and beaches.",
-    "price": 1600,
-    "category": "Culture"
-  },
-  {
-    "id": "17",
-    "packageName": "Banff National Park Adventure",
-    "country": "Canada",
-    "description": "Hike, kayak, and photograph stunning glacial lakes in the heart of the Rockies.",
-    "price": 1800,
-    "category": "Aventure"
-  },
-  {
-    "id": "18",
-    "packageName": "Petra & the Dead Sea Experience",
-    "country": "Jordan",
-    "description": "Discover the ancient city of Petra and float in the mineral-rich waters of the Dead Sea.",
-    "price": 2300,
-    "category": "Culture"
-  },
-  {
-    "id": "19",
-    "packageName": "Barcelona Sun & Culture",
-    "country": "Spain",
-    "description": "Enjoy sunny beaches, Gaudí’s architecture, and tapas in lively Barcelona.",
-    "price": 1900,
-    "category": "Plage"
-  },
-  {
-    "id": "20",
-    "packageName": "Vietnam Adventure Circuit",
-    "country": "Vietnam",
-    "description": "Travel through Hanoi, Halong Bay, and Ho Chi Minh City on an epic adventure.",
-    "price": 2000,
-    "category": "Aventure"
+
+
+  useEffect(() => {
+    getDestinations();
+  }, []);
+
+
+  async function getDestinations() {
+    const destinationsfromserver = await fetch("http://localhost:5001/destinations");
+    const data = await destinationsfromserver.json();
+    setDestinations(data);// le modificateur
+
   }
 
+
+
+  async function fetchDestinations(url) {
+    const Objres = await fetch(url);
+    const data2 = await Objres.json();
+    return data2;
+
+  }
+
+
+  const [destinations, setDestinations] = useState([
   ])
 
-
-
-
-
-  // async function getDestinations() {
-  //   const destinationsfromserver = await fetch("http://localhost:5001/destinations");
-  //   setDestinations(destinationsfromserver);// le modificateur
-
-  // }
-
-  // useEffect(() => {
-  //   getDestinations();
-  // }, []);
-
-  // async function fetchDestinations(url) {
-  //   const Objres = await fetch(url);
-  //   const data = await Objres.json();
-  //   return data;
-
-  // }
-
-  // const [destinations, setDestinations] = useState([]);//userState monte le DB
-
-  const deletePackage = (id) => {
+  const deletePackage = async (id) => {
+    await fetch(`http://localhost:5001/destinations/${id}`, {
+      method: 'DELETE',
+    })
     setDestinations(destinations.filter((destination) => destination.id !== id));
   }
 
@@ -201,24 +49,53 @@ function App() {
     console.log(id);
   }
 
-  const addPackage = (destination) => {
-    const lastId = destination.length > 0 ? destinations[destinations.length - 1].id : 0;
-    const id = lastId + 1;
-    const newPackage = { id, ...destination }
+  const addPackage = async (destination) => {
+    const resp = await fetch('http://localhost:5001/destinations', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(destination)
+    })
+
+    // const lastId = destination.length > 0 ? destinations[destinations.length - 1].id : 0;
+    // const id = lastId + 1;
+    // const newPackage = { id, ...destination }
+
+    const newPackage = await resp.json();
     setDestinations([...destinations, newPackage]);
   }
 
+  const [showaddPackage, setshowaddPackage] = useState(false);
+
   return (
 
-    <div className="min-h-screen">
-      <div className="container mx-auto p-8 border-2 rounded mt-20 mb-20 rounded-lg max-w-scren-md">
-        <Header />
-        <AddPackage onAdd={addPackage} />
-        <Packages destinations={destinations} onDelete={deletePackage} onUpdate={updatePackage} />
+    <BrowserRouter>
+
+      <div className="min-h-screen">
+        <div className="container mx-auto p-8 border-2 rounded mt-20 mb-20 rounded-lg max-w-scren-md">
+
+          <Header toogleForm={() => setshowaddPackage(!showaddPackage)} showAdd={showaddPackage} />
+          {showaddPackage && < AddPackage onAdd={addPackage} />}
+
+          <Routes>
+
+            <Route path='/' element={<Packages destinations={destinations} onDelete={deletePackage} onUpdate={updatePackage} />} />
+            <Route path='/edit' element={<EditPackage onEdit={updatePackage} />} />
+            <Route path='/about' element={<About setshowaddPackage={setshowaddPackage} />} />
+
+
+          </Routes>
+
+
+
+
+
+          <Footer />
+        </div>
       </div>
-    </div>
 
-
+    </BrowserRouter>
   )
 
 }
