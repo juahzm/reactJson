@@ -4,9 +4,11 @@ const Header = () => {
 
     return (
 
-        <header className="flex justify-between ">
-            <h1 className="text-xl font-body">Travel packages</h1>
-            <Button title="Add" />
+        <header className="flex justify-between basis-[777px] ">
+            <h1 className="text-xl font-bold font-body mt-5 mb-10">Travel Packages</h1>
+            <div>
+                <Button title="Add" />
+            </div>
         </header>
     )
 }

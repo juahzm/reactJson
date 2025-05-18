@@ -3,10 +3,11 @@ import Button from './components/Button';
 import Header from './components/Header';
 import { useState, useEffect } from 'react';
 import Packages from './components/Packages';
+import AddPackage from './components/AddPackage';
 
 
 function App() {
-  const destinations = [{
+  const [destinations, setDestinations] = useState([{
     "id": "1",
     "packageName": "Paris Getaway",
     "country": "France",
@@ -167,7 +168,7 @@ function App() {
     "category": "Aventure"
   }
 
-  ]
+  ])
 
 
 
@@ -192,13 +193,28 @@ function App() {
 
   // const [destinations, setDestinations] = useState([]);//userState monte le DB
 
+  const deletePackage = (id) => {
+    setDestinations(destinations.filter((destination) => destination.id !== id));
+  }
+
+  const updatePackage = (id) => {
+    console.log(id);
+  }
+
+  const addPackage = (destination) => {
+    const lastId = destination.length > 0 ? destinations[destinations.length - 1].id : 0;
+    const id = lastId + 1;
+    const newPackage = { id, ...destination }
+    setDestinations([...destinations, newPackage]);
+  }
 
   return (
 
     <div className="min-h-screen">
       <div className="container mx-auto p-8 border-2 rounded mt-20 mb-20 rounded-lg max-w-scren-md">
         <Header />
-        <Packages destinations={destinations} />
+        <AddPackage onAdd={addPackage} />
+        <Packages destinations={destinations} onDelete={deletePackage} onUpdate={updatePackage} />
       </div>
     </div>
 
