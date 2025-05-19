@@ -1,66 +1,87 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
+
+
 
 const EditPackage = ({ }) => {
 
+    const { id } = useParams(); //get the id
 
-    <form >
-        <h2 className="text-lg font-bold mb-4 text-blue-700">Edit Package</h2>
-        <div>
-            <input
-                type="text"
-                name="packageName"
-                value=""
-                placeholder="Package Name"
-                className="w-full p-2 mb-2 border rounded"
-                onChange=""
-            />
-        </div>
-        <div>
-            <input
-                type="text"
-                name="country"
-                value=""
-                placeholder="Country"
-                className="w-full p-2 mb-2 border rounded"
-                onChange=""
-            />
-        </div>
 
-        <div>
-            <textarea
-                name="description"
-                placeholder="Description"
-                value=""
-                className="w-full p-2 mb-2 border rounded"
-                onChange=""
-            />
-        </div>
-        <div>
-            <input
-                type="number"
-                name="price"
-                placeholder="Price"
-                value=""
-                className="w-full p-2 mb-2 border rounded"
-                onChange=""
-            />
-        </div>
+    //bring the formData empty
+    const [formData, setFormData] = useState({
 
-        <div>
-            <input
-                type="text"
-                name="category"
-                value=""
-                placeholder="Category"
-                className="w-full p-2 mb-4 border rounded"
-                onChange=""
-            />
-        </div>
-        <div className="flex gap-4">
-            <input type="submit" className="bg-blue-500 text-white px-4 py-2 rounded" value="Save" />
-        </div>
-    </form>
+        PackageName: "",
+        country: "",
+        description: "",
+        price: "",
+        category: ""
 
+
+    })
+
+    return (
+
+
+        < form >
+            <h2 className="text-lg font-bold mb-4 text-blue-700">Edit Package</h2>
+            <div>
+                <input
+                    type="text"
+                    name="packageName"
+                    value=""
+                    placeholder="Package Name"
+                    className="w-full p-2 mb-2 border rounded"
+                    onChange=""
+                />
+            </div>
+            <div>
+                <input
+                    type="text"
+                    name="country"
+                    value=""
+                    placeholder="Country"
+                    className="w-full p-2 mb-2 border rounded"
+                    onChange=""
+                />
+            </div>
+
+            <div>
+                <textarea
+                    name="description"
+                    placeholder="Description"
+                    value=""
+                    className="w-full p-2 mb-2 border rounded"
+                    onChange=""
+                />
+            </div>
+            <div>
+                <input
+                    type="number"
+                    name="price"
+                    placeholder="Price"
+                    value=""
+                    className="w-full p-2 mb-2 border rounded"
+                    onChange=""
+                />
+            </div>
+
+            <div>
+                <input
+                    type="text"
+                    name="category"
+                    value=""
+                    placeholder="Category"
+                    className="w-full p-2 mb-4 border rounded"
+                    onChange=""
+                />
+            </div>
+            <div className="flex gap-4">
+                <input type="submit" className="bg-blue-500 text-white px-4 py-2 rounded" value="Save" />
+            </div>
+        </form >
+    )
 
 }
 

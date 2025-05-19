@@ -1,5 +1,7 @@
 import { FaTrash } from 'react-icons/fa';
 import { FaEdit } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
 
 const SinglePackage = ({ destination, onDelete, onUpdate }) => {
     return (
@@ -17,12 +19,14 @@ const SinglePackage = ({ destination, onDelete, onUpdate }) => {
 
                 </div>
                 <div className="flex flex-col gap-y-5">
-                    <FaEdit className="text-green-400 text-4xl cursor-pointer" onClick={() => onUpdate(destination.id)} />
+                    <Link to={`/edit/${destination.id}`}>
+                        <FaEdit className="text-green-400 text-4xl cursor-pointer" />
+                    </Link>
                     <FaTrash className="text-red-400 text-3xl cursor-pointer" onClick={() => onDelete(destination.id)} />
 
                 </div>
             </div>
-        </div>
+        </div >
 
     )
 }

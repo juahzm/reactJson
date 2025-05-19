@@ -11,6 +11,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Nav from './components/Nav';
 import Home from './components/Home';
 
+
 function App() {
 
 
@@ -45,6 +46,8 @@ function App() {
     })
     setDestinations(destinations.filter((destination) => destination.id !== id));
   }
+
+
 
   const updatePackage = (id) => {
     console.log(id);
@@ -83,7 +86,7 @@ function App() {
           <Routes>
 
             <Route path='/packages' element={<Packages destinations={destinations} onDelete={deletePackage} onUpdate={updatePackage} />} />
-            <Route path='/edit' element={<EditPackage onEdit={updatePackage} />} />
+            <Route path='/edit/:id' element={<EditPackage destinations={destinations} onEdit={updatePackage} />} />
             <Route path='/about' element={<About setshowaddPackage={setshowaddPackage} />} />
             <Route path='/home' element={<Home setshowaddPackage={setshowaddPackage} />} />
 
