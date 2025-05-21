@@ -1,4 +1,4 @@
-import PropsTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Button from "./Button";
 import { useLocation } from 'react-router-dom';
 const Header = ({ toogleForm, showAdd }) => {

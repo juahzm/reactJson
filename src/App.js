@@ -15,10 +15,6 @@ import Home from './components/Home';
 function App() {
 
 
-  useEffect(() => {
-    getDestinations();
-  }, []);
-
 
   async function getDestinations() {
     const destinationsfromserver = await fetch("http://localhost:5001/destinations");
@@ -28,6 +24,12 @@ function App() {
   }
 
 
+  useEffect(() => {
+    getDestinations();
+
+  }, []);
+
+
 
   async function fetchDestinations(url) {
     const Objres = await fetch(url);
@@ -35,25 +37,46 @@ function App() {
     return data2;
 
   }
-
-
   const [destinations, setDestinations] = useState([
-  ])
+  ]);
 
-  const deletePackage = async (id) => {
-    await fetch(`http://localhost:5001/destinations/${id}`, {
+
+
+  async function deletePackage(id) {
+    const Objres2 = await fetch(`http://localhost:5001/destinations/${id}`, {
       method: 'DELETE',
-    })
+    });
+
+    const data3 = await Objres2.json();
     setDestinations(destinations.filter((destination) => destination.id !== id));
+
+    return data3;
+
   }
 
 
+  async function editPackag(id, updateData) {
+    const Objres3 = await fetch(`http://localhost:5001/destinations/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updateData)
+    });
 
-  const updatePackage = (id) => {
-    console.log(id);
-  }
+    const updatedPackage = await Objres3.json();
 
-  const addPackage = async (destination) => {
+
+    setDestinations((destinations) =>
+      destinations.map((packag) => (packag.id === id ? updatedPackage : packag))
+    );
+
+    alert("Package updated!");
+  };
+
+
+
+  async function addPackage(destination) {
     const resp = await fetch('http://localhost:5001/destinations', {
       method: 'POST',
       headers: {
@@ -62,12 +85,11 @@ function App() {
       body: JSON.stringify(destination)
     })
 
-    // const lastId = destination.length > 0 ? destinations[destinations.length - 1].id : 0;
-    // const id = lastId + 1;
-    // const newPackage = { id, ...destination }
 
     const newPackage = await resp.json();
     setDestinations([...destinations, newPackage]);
+
+    alert("Package was added to the list!");
   }
 
   const [showaddPackage, setshowaddPackage] = useState(false);
@@ -85,8 +107,8 @@ function App() {
 
           <Routes>
 
-            <Route path='/packages' element={<Packages destinations={destinations} onDelete={deletePackage} onUpdate={updatePackage} />} />
-            <Route path='/edit/:id' element={<EditPackage destinations={destinations} onEdit={updatePackage} />} />
+            <Route path='/packages' element={<Packages destinations={destinations} onDelete={deletePackage} />} />
+            <Route path='/edit/:id' element={<EditPackage destinations={destinations} onEdit={editPackag} />} />
             <Route path='/about' element={<About setshowaddPackage={setshowaddPackage} />} />
             <Route path='/home' element={<Home setshowaddPackage={setshowaddPackage} />} />
 

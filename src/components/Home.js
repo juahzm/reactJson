@@ -19,8 +19,8 @@ const Home = ({ setshowaddPackage }) => {
                 Browse our growing selection of packages, from the romantic streets of Paris to the wild plains of the Serengeti, and find your perfect escape today.
 
                 🧳 Start your journey with WanderWise — where the world is just a click away.</p>
-            <div className='mt-7 p-1 border inline-flex rounded text-center'>
-                <Link className="font-bold inline-flex text-gray-400 " to="/packages"> Back</Link>
+            <div className='mt-7 p-1 border flex rounded text-center w-max mx-auto'>
+                <Link className="font-bold text-gray-400 " to="/packages"> Back</Link>
             </div>
         </div>
     )

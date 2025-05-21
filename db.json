@@ -1,25 +1,9 @@
 {
   "destinations": [
     {
-      "id": "2",
-      "packageName": "Safari in the Serengeti",
-      "country": "Tanzania",
-      "description": "Experience wildlife like never before on a guided safari through the vast Serengeti National Park.",
-      "price": 3200,
-      "category": "Aventure"
-    },
-    {
-      "id": "3",
-      "packageName": "Beach Paradise in Bali",
-      "country": "Indonesia",
-      "description": "Relax on stunning white-sand beaches, explore temples, and enjoy vibrant Balinese culture.",
-      "price": 1700,
-      "category": "Plage"
-    },
-    {
       "id": "4",
       "packageName": "Tokyo Explorer",
-      "country": "Japan",
+      "country": "Japon",
       "description": "Dive into futuristic cities, traditional temples, and world-renowned cuisine in Tokyo.",
       "price": 2500,
       "category": "Culture"

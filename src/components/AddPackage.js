@@ -8,7 +8,7 @@ const AddPackage = ({ onAdd }) => {
     const [price, setPrice] = useState('');
     const [category, setCategory] = useState('');
 
-    const onSubmit = (e) => {
+    function onSubmit(e) {
         e.preventDefault();
         if (!packageName) {
             alert('please add a Package name')
